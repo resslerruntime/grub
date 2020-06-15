@@ -50,4 +50,12 @@
 
 #define UNUSED __attribute__((__unused__))
 
+#if defined(__clang__) && defined(__clang_major__) && defined(__clang_minor__)
+#  define CLANG_PREREQ(maj,min) \
+          ((__clang_major__ > (maj)) || \
+	   (__clang_major__ == (maj) && __clang_minor__ >= (min)))
+#else
+#  define CLANG_PREREQ(maj,min) 0
+#endif
+
 #endif /* ! GRUB_COMPILER_HEADER */
